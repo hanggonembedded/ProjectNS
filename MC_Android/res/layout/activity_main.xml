@@ -1,0 +1,93 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/activity_vertical_margin"
+    tools:context=".MainActivity" >
+
+    <TextView
+        android:id="@+id/textMsg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:text="State: " />
+
+    <TextView
+        android:id="@+id/textLat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textMsg"
+        android:layout_marginLeft="10dp"
+        android:text="Lat: " />
+
+    <TextView
+        android:id="@+id/textLng"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textLat"
+        android:layout_marginLeft="10dp"
+        android:text="Lng: " />
+
+    <TextView
+        android:id="@+id/textAlt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textLng"
+        android:layout_marginLeft="10dp"
+        android:text="Alt: " />
+
+    <TextView
+        android:id="@+id/textAcc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textAlt"
+        android:layout_marginLeft="10dp"
+        android:text="Acc: " />
+
+    <Button
+        android:id="@+id/btnStartFlight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/textFlightStatus"
+        android:layout_below="@+id/textFlightStatus"
+        android:text="Start Flight" />
+
+    <Button
+        android:id="@+id/btnStopFlight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnStartFlight"
+        android:layout_centerHorizontal="true"
+        android:text="Stop Flight" />
+
+    <TextView
+        android:id="@+id/textFlightStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/btnStopFlight"
+        android:layout_below="@+id/textAcc"
+        android:text="Initial State"
+        android:textColor="#FF0000"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/textTarget"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/btnStopFlight"
+        android:layout_marginTop="29dp"
+        android:text="TARGET"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="#0000FF" />
+
+    <TextView
+        android:id="@+id/textTargetID"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textTarget"
+        android:layout_below="@+id/textTarget"
+        android:layout_marginTop="16dp"
+        android:text="ID:" />
+    
+</RelativeLayout>
