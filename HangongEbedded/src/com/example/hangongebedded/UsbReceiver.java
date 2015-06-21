@@ -2,7 +2,6 @@ package com.example.hangongebedded;
 
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.util.Timer;
 import java.util.TimerTask;
 
 import kr.co.driver.serial.FTDriver;
@@ -26,7 +25,9 @@ public class UsbReceiver extends BroadcastReceiver {
 	private Context mContext;
 	private Activity mActivity;
 	private FTDriver mSerial;
-	private Handler mHandler = new Handler();
+	private Handler mHandler_ = new Handler();
+	private ConnectionServer connection;
+	
 	private StringBuilder mText;
 	private StringBuilder temp;
 
@@ -54,6 +55,8 @@ public class UsbReceiver extends BroadcastReceiver {
 	private int mStopBits           = FTDriver.FTDI_SET_DATA_STOP_BITS_1;
 	private int mFlowControl        = FTDriver.FTDI_SET_FLOW_CTRL_NONE;
 	private int mBreak              = FTDriver.FTDI_SET_NOBREAK;
+	
+	
 
 	public void SetOutputStream(DataOutputStream data)
 	{
@@ -64,6 +67,7 @@ public class UsbReceiver extends BroadcastReceiver {
 		mActivity = activity;
 		mContext = activity.getBaseContext();
 		mSerial = serial;
+		connection = new ConnectionServer(mActivity);
 	}
 
 	public int GetTextFontSize()
@@ -220,10 +224,10 @@ public class UsbReceiver extends BroadcastReceiver {
 					if(bMsgCnt > 0)
 					{
 						bMsgCnt = 0;
-						mHandler.post(new Runnable() {
+						mHandler_.post(new Runnable() {
 							public void run() {
 							
-								mHandler.post(new Runnable() {
+								mHandler_.post(new Runnable() {
 									public void run() {
 										((MainActivity)mActivity).onSetText(mText.toString());
 									}
@@ -231,7 +235,8 @@ public class UsbReceiver extends BroadcastReceiver {
 								
 								try {
 									
-									dos.writeBytes(mText.toString() + "\n"); 
+									//dos.writeBytes(mText.toString() + "\n"); 
+									connection.mHandler.postDelayed(connection.mRunnable, 1000);
 									dos.flush();
 									
 								} catch (IOException e) {

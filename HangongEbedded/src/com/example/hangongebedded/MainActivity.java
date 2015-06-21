@@ -1,11 +1,26 @@
 package com.example.hangongebedded;
 
+import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.Socket;
 
 import kr.co.driver.serial.FTDriver;
+
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.StatusLine;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.PendingIntent;
@@ -13,12 +28,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.hardware.usb.UsbManager;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 import android.view.Menu;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -233,23 +248,23 @@ public class MainActivity extends Activity {
 		{
 			mUsbReceiver.writeDataToSerial(result);
 		}*/
-
-
-
-		int scrollamout = Tv.getLayout().getLineTop(Tv.getLineCount()) - Tv.getHeight();
-
-		if (scrollamout > Tv.getHeight())
-		{
-			Tv.scrollTo(0, scrollamout);
-		}
-
 	}
 
 	Handler handler = new Handler() {
 		public void handleMessage(Message message) {
 			super.handleMessage(message);
 			//print(chatMessage);
-			Tv.append(message.toString()+"\n");
+			Tv.append(message.obj.toString()+"\n");
+			
+
+			int scrollamout = Tv.getLayout().getLineTop(Tv.getLineCount()) - Tv.getHeight();
+
+			if (scrollamout > Tv.getHeight())
+			{
+				Tv.scrollTo(0, scrollamout);
+			}
+
 		}
 	};
+ 
 }
